@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forecastly</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body onload="getWeather('bratislava')">
+    <div id="container">
+        <div id="header">
+            <div id="logo">
+                <h1><i class="fa-solid fa-cloud"></i> FORECASTLY</h1>
+            </div>
+            <div id="search">
+                <input type="text" name="" id="city" placeholder="Search city...">
+                <button onclick="getWeather()"><i class="fa-solid fa-magnifying-glass"></i></button>
+            </div>
+        </div>
+
+        <div id="main">
+            <div id="left">
+                <div id="today">
+                    <div id="temp">
+                        <div id="tempDiv"></div>
+                        <img id="weatherIcon" alt="Weather Icon">
+                    </div>
+                    <div id="info">
+                        <div id="weatherInfo"></div>
+                    </div>    
+                </div>
+                <div id="hourly">
+                    <div id="hourlyForecast"></div>
+                </div>
+            </div>
+            <div id="right">
+                <div id="highlights">
+                    <div id="gridContainer">
+                        <div id="item1">
+                            <div id="itemTitle">Temperature</div>
+                            <div id="tempMinMax"></div>
+                        </div>
+                        <div id="item2">
+                            <div id="itemTitle">Feels like</div>
+                            <div id="feelsLike"></div>
+                        </div>
+                        <div id="item3">
+                            <div id="itemTitle">Sunrise & Sunset</div>
+                            <div id="sun"></div>
+                        </div>
+                        <div id="item4">
+                            <div id="itemTitle">Humidity</div>
+                            <div id="humidity"></div>
+                        </div>
+                        <div id="item5">
+                            <div id="itemTitle">Pressure</div>
+                            <div id="pressure"></div>
+                        </div>
+                        <div id="item6">
+                            <div id="itemTitle">Wind speed</div>
+                            <div id="wind"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
