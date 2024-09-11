@@ -10,13 +10,11 @@ body {
 }
 
 #container {
-    /*background-color: red;*/
     width: 95vw;
     height: 100vh;
 }
 
 #header {
-    /*background-color: blue;*/
     display: flex;
     justify-content: center;
     align-items: center;
@@ -29,7 +27,6 @@ body {
 }
 
 #search {
-    /*background-color: aqua;*/
     flex-grow: 1;
     padding: 20px;
 }
