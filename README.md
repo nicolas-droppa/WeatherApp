@@ -10,3 +10,6 @@ Welcome to **Forecastly**, a webaplication to forcast weather based on entered l
 - [🎮 How to Play](#how-to-play)
 - [✨ Features](#features)
 
+---
+
+## 📝 Introduction
