@@ -58,7 +58,6 @@ button {
 #main {
     width: 100%;
     display: flex;
-    /*background-color: rgb(61, 38, 9);*/
 }
 
 #left {
@@ -167,7 +166,7 @@ button {
     grid-template-areas: 
         "item1 item2 item3 item3"
         "item1 item4 item5 item6";
-    gap: 16px; /* Add some space between the grid items */
+    gap: 16px;
     height: 500px;
     width: 1400px;
   }
