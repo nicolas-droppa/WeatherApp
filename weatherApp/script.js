@@ -98,6 +98,8 @@ function displayHighlights(data) {
     const pressureDiv = document.getElementById('pressure');
     const windDiv = document.getElementById('wind');
     const sunDiv = document.getElementById('sun');
+    const tempMinDiv = document.getElementById('tempMin');
+    const tempMaxDiv = document.getElementById('tempMax');
 
     const humidity = data.main.humidity;
     const feelsLike = Math.round(data.main.feels_like - 273.15);
