@@ -109,12 +109,16 @@ function displayHighlights(data) {
     const sunriseM = new Date(data.sys.sunrise * 1000).getMinutes()
     const sunsetH = new Date(data.sys.sunset * 1000).getHours()
     const sunsetM = new Date(data.sys.sunset * 1000).getMinutes()
+    const tempMin = Math.round(data.main.temp_min - 273.15);
+    const tempMax = Math.round(data.main.temp_max - 273.15);
 
     humidityDiv.innerHTML = `<i class="fa-solid fa-droplet"></i><p>${humidity}<span>%</span></p>`;
     feelsLikeDiv.innerHTML = `<i class="fa-solid fa-seedling"></i><p>${feelsLike}<span>°C</span></p>`;
     pressureDiv.innerHTML = `<i class="fa-solid fa-align-right"></i><p>${pressure}<span> hPa</span></p>`;
     windDiv.innerHTML = `<i class="fa-solid fa-wind"></i><p>${wind}<span> km/hr</span></p>`;
     sunDiv.innerHTML = `<i class="fa-solid fa-sun"></i><p>${sunriseH}:${sunriseM} ${sunsetH}:${sunsetM}</p>`;
+    tempMinDiv.innerHTML = `<i class="fa-solid fa-wind"></i><div id="tempTitle">Minimal temperature</div><p>${tempMin}<span>°C</span></p>`;
+    tempMaxDiv.innerHTML = `<div id="tempTitle">Maximum temperature</div><p>${tempMax}<span>°C</span></p>`;
 }
 
 function displayHourlyForecast(data) {
