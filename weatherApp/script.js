@@ -1,5 +1,5 @@
 function getWeather(defaultCity) {
-    const apiKey = 'api-key';
+    const apiKey = 'key';
     if (defaultCity == null) {
         var city = document.getElementById('city').value;
     } else {
@@ -117,8 +117,8 @@ function displayHighlights(data) {
     pressureDiv.innerHTML = `<i class="fa-solid fa-align-right"></i><p>${pressure}<span> hPa</span></p>`;
     windDiv.innerHTML = `<i class="fa-solid fa-wind"></i><p>${wind}<span> km/hr</span></p>`;
     sunDiv.innerHTML = `<i class="fa-solid fa-sun"></i><p>${sunriseH}:${sunriseM} ${sunsetH}:${sunsetM}</p>`;
-    tempMinDiv.innerHTML = `<i class="fa-solid fa-wind"></i><div id="tempTitle">Minimal temperature</div><p>${tempMin}<span>°C</span></p>`;
-    tempMaxDiv.innerHTML = `<div id="tempTitle">Maximum temperature</div><p>${tempMax}<span>°C</span></p>`;
+    tempMinDiv.innerHTML = `<i class="fa-solid fa-snowflake"></i><div id="tempTitle"><b>Min temperature</b><p>${tempMin}<span>°C</span></p></div>`;
+    tempMaxDiv.innerHTML = `<i class="fa-solid fa-sun"></i><div id="tempTitle"><b>Max temperature</b><p>${tempMax}<span>°C</span></p></div>`;
 }
 
 function displayHourlyForecast(data) {
