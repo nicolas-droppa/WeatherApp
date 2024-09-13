@@ -206,19 +206,19 @@ button {
     grid-area: item6;
   }
 
-  #humidity, #feelsLike, #pressure, #wind, #sun {
+  #humidity, #feelsLike, #pressure, #wind, #sun, #tempMax, #tempMin {
     display: flex;
     color: rgb(190, 190, 190);
     font-size: 48px;
     align-items: center;
-    justify-content: space-between;
   }
 
-  #humidity p, #feelsLike p, #pressure p, #wind p, #sun p {
+  #humidity p, #feelsLike p, #pressure p, #wind p, #sun p, #tempMax p, #tempMin p, #tempTitle {
+    font-size: 48px;
     z-index: 2;
   }
 
-  #humidity i, #feelsLike i, #pressure i, #wind i, #sun i{
+  #humidity i, #feelsLike i, #pressure i, #wind i, #sun i, #tempMax i {
     position: absolute;
     top: -25px;
     right: -100px;
@@ -227,10 +227,33 @@ button {
     color: rgb(28, 28, 28);
   }
 
-  #humidity span, #feelsLike span, #pressure span, #wind span, #sun span{
+  #tempMin i{
+    position: absolute;
+    bottom: -50px;
+    left: -100px;
+    z-index: 1;
+    font-size: 300px;
+    color: rgb(28, 28, 28);
+  }
+
+  #humidity span, #feelsLike span, #pressure span, #wind span, #sun span, #tempMax span, #tempMin span{
     font-size: 40px;
   }
 
   #wind i {
     transform: scaleX(-1);
+  }
+
+  #tempMax, #tempMin {
+    padding-top: 30px;
+    align-items: center;
+  }
+
+  #tempTitle {
+    font-size: 12px;
+  }
+
+  #tempTitle b{
+    font-weight: lighter;
+    color: #7b7b7b;
   }
