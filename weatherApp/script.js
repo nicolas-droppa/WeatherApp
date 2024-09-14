@@ -68,6 +68,10 @@ function getMonthOfYear(num) {
     return monthsOfYear.get(num) || 'Invalid number';
 }
 
+function prettifyMinutes(object) {
+    return object < 10 ? "0" + object : object;
+}
+
 function displayWeather(data) {
     const tempDiv = document.getElementById('tempDiv');
     const weatherInfoDiv = document.getElementById('weatherInfo');
@@ -90,6 +94,7 @@ function displayWeather(data) {
     weatherIcon.src = iconUrl;
     weatherIcon.style.display = 'block';
     displayHighlights(data)
+    displayDaily(data)
 }
 
 function displayHighlights(data) {
@@ -97,7 +102,8 @@ function displayHighlights(data) {
     const feelsLikeDiv = document.getElementById('feelsLike');
     const pressureDiv = document.getElementById('pressure');
     const windDiv = document.getElementById('wind');
-    const sunDiv = document.getElementById('sun');
+    const riseDiv = document.getElementById('rise');
+    const setDiv = document.getElementById('set');
     const tempMinDiv = document.getElementById('tempMin');
     const tempMaxDiv = document.getElementById('tempMax');
 
@@ -116,9 +122,14 @@ function displayHighlights(data) {
     feelsLikeDiv.innerHTML = `<i class="fa-solid fa-seedling"></i><p>${feelsLike}<span>°C</span></p>`;
     pressureDiv.innerHTML = `<i class="fa-solid fa-align-right"></i><p>${pressure}<span> hPa</span></p>`;
     windDiv.innerHTML = `<i class="fa-solid fa-wind"></i><p>${wind}<span> km/hr</span></p>`;
-    sunDiv.innerHTML = `<i class="fa-solid fa-sun"></i><p>${sunriseH}:${sunriseM} ${sunsetH}:${sunsetM}</p>`;
+    riseDiv.innerHTML = `<i class="fa-solid fa-sun"></i><div id="tempTitle"><b>Sunrise</b><p>${sunriseH}:${prettifyMinutes(sunriseM)}</p>`;
+    setDiv.innerHTML = `<i class="fa-solid fa-circle"></i><div id="tempTitle"><b>Sunset</b><p>${sunsetH}:${prettifyMinutes(sunsetM)}</p>`;
     tempMinDiv.innerHTML = `<i class="fa-solid fa-snowflake"></i><div id="tempTitle"><b>Min temperature</b><p>${tempMin}<span>°C</span></p></div>`;
     tempMaxDiv.innerHTML = `<i class="fa-solid fa-sun"></i><div id="tempTitle"><b>Max temperature</b><p>${tempMax}<span>°C</span></p></div>`;
+}
+
+function displayDaily(data) {
+    
 }
 
 function displayHourlyForecast(data) {
