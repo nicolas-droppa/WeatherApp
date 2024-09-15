@@ -150,110 +150,250 @@ button {
 }
 
 #right {
-    margin-left: 20px;
+    margin-left: 25px;
 }
 
 #highlights {
     border-radius: 20px;
     margin-bottom: 20px;
-    margin-left: 5px;
 }
 
 #gridContainer {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr); /* 4 columns */
-    grid-template-rows: repeat(2, auto); /* 2 rows */
-    grid-template-areas: 
-        "item1 item2 item3 item3"
-        "item1 item4 item5 item6";
-    gap: 16px;
-    height: 500px;
-    width: 1400px;
-  }
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* 4 columns */
+  grid-template-rows: repeat(2, auto); /* 2 rows */
+  grid-template-areas: 
+      "item1 item2 item3 item3"
+      "item1 item4 item5 item6";
+  gap: 16px;
+  height: 500px;
+  width: 1400px;
+}
 
-  #gridContainer > *:nth-child(n) {
-    position: relative;
-    overflow: hidden;
-    border: 2px solid #9191911e;
-    background-color: #161616;
-    padding: 28px;
-    border-radius: 16px;
-    font-size: 16px;
-    color: #919191e3;
-  }
-  
-  #item1 {
-    grid-area: item1;
-  }
-  
-  #item2 {
-    grid-area: item2;
-  }
-  
-  #item3 {
-    grid-area: item3;
-  }
-  
-  #item4 {
-    grid-area: item4;
-  }
-  
-  #item5 {
-    grid-area: item5;
-  }
-  
-  #item6 {
-    grid-area: item6;
-  }
+#gridContainer > *:nth-child(n) {
+  position: relative;
+  overflow: hidden;
+  border: 2px solid #9191911e;
+  background-color: #161616;
+  padding: 28px;
+  border-radius: 16px;
+  font-size: 16px;
+  color: #919191e3;
+}
 
-  #humidity, #feelsLike, #pressure, #wind, #sun, #tempMax, #tempMin {
-    display: flex;
-    color: rgb(190, 190, 190);
-    font-size: 48px;
-    align-items: center;
-  }
+#item1 {
+  grid-area: item1;
+}
 
-  #humidity p, #feelsLike p, #pressure p, #wind p, #sun p, #tempMax p, #tempMin p, #tempTitle {
-    font-size: 48px;
-    z-index: 2;
-  }
+#item2 {
+  grid-area: item2;
+}
 
-  #humidity i, #feelsLike i, #pressure i, #wind i, #sun i, #tempMax i {
-    position: absolute;
-    top: -25px;
-    right: -100px;
-    z-index: 1;
-    font-size: 300px;
-    color: rgb(28, 28, 28);
-  }
+#item3 {
+  grid-area: item3;
+}
 
-  #tempMin i{
-    position: absolute;
-    bottom: -50px;
-    left: -100px;
-    z-index: 1;
-    font-size: 300px;
-    color: rgb(28, 28, 28);
-  }
+#item4 {
+  grid-area: item4;
+}
 
-  #humidity span, #feelsLike span, #pressure span, #wind span, #sun span, #tempMax span, #tempMin span{
-    font-size: 40px;
-  }
+#item5 {
+  grid-area: item5;
+}
 
-  #wind i {
-    transform: scaleX(-1);
-  }
+#item6 {
+  grid-area: item6;
+}
 
-  #tempMax, #tempMin {
-    padding-top: 30px;
-    align-items: center;
-  }
+#humidity, #feelsLike, #pressure, #wind, #rise, #set, #tempMax, #tempMin {
+  display: flex;
+  color: rgb(190, 190, 190);
+  font-size: 48px;
+  align-items: center;
+  padding-top: 20px;
+}
 
-  #tempTitle {
-    font-size: 12px;
-  }
+#itemTitle {
+  position: absolute;
+  z-index: 5;
+}
 
-  #tempTitle b{
-    font-weight: lighter;
-    color: #7b7b7b;
-  }
+#humidity p, #feelsLike p, #pressure p, #wind p, #rise p, #set p, #tempMax p, #tempMin p, #tempTitle {
+  font-size: 48px;
+  z-index: 2;
+}
+
+#humidity i, #feelsLike i, #pressure i, #wind i, #sun i, #tempMax i, #set i {
+  position: absolute;
+  top: -25px;
+  right: -100px;
+  z-index: 1;
+  font-size: 300px;
+  color: rgb(28, 28, 28);
+}
+
+#rise i {
+  position: absolute;
+  bottom: -50px;
+  left: -100px;
+  z-index: 1;
+  font-size: 300px;
+  color: rgb(28, 28, 28);
+}
+
+#tempMin i{
+  position: absolute;
+  bottom: -50px;
+  left: -100px;
+  z-index: 1;
+  font-size: 300px;
+  color: rgb(28, 28, 28);
+}
+
+#humidity span, #feelsLike span, #pressure span, #wind span, #sun span, #tempMax span, #tempMin span{
+  font-size: 40px;
+}
+
+#wind i {
+  transform: scaleX(-1);
+}
+
+#sun {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 30% 0 0;
+}
+
+#rise b, #set b {
+  position: absolute;
+  margin-top: 20px;
+}
+
+#tempMax {
+  padding-top: 30px;
+  align-items: center;
+}
+
+#tempMin {
+  margin-top: 20%;
+}
+
+#tempTitle {
+  font-size: 12px;
+}
+
+#tempTitle b{
+  position: absolute;
+  margin-top: 20px;
+  font-weight: lighter;
+  color: #7b7b7b;
+}
+
+#gridContainerDaily {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr); /* 4 columns */
+  grid-template-rows: repeat(1, auto); /* 2 rows */
+  grid-template-areas: 
+      "item1 item2 item3 item4 item5";
+  gap: 16px;
+  height: 287px;
+  width: 1400px;
+}
+
+#gridContainerDaily > *:nth-child(n) {
+  position: relative;
+  overflow: hidden;
+  border: 2px solid #9191911e;
+  background-color: #161616;
+  padding: 28px;
+  border-radius: 16px;
+  font-size: 16px;
+  color: #919191e3;
+}
+
+#daily1 {
+  grid-area: item1;
+}
+
+#daily2 {
+  grid-area: item2;
+}
+
+#daily3 {
+  grid-area: item3;
+}
+
+#daily4 {
+  grid-area: item4;
+}
+
+#daily5 {
+  grid-area: item5;
+}
+
+#dailyHeader {
+  display: block;
+}
+
+#date {
+  padding: 20px 0 20px 0;
+  font-size: 64px;
+  color: #b6b6b6e3;
+}
+
+#date span{
+  font-size: 40px;
+  color: #3e3e3ee3;
+}
+
+#avgWeather {
+  font-size: 16px;
+  color: #494949;
+}
+
+#avgWeather span{
+  font-size: 16px;
+  color: #878787;
+}
+
+#separatorLine {
+  position: relative;
+  width: 100%;
+  height: 3px;
+  background-color: #1c1c1c;
+  margin: 20px 0 20px 0;
+}
+
+#tempDisplay {
+  position: relative;
+  display: flex;
+  width: 100%;
+  font-size: 24px;
+  color: #b6b6b6e3;
+  align-items: center;
+}
+
+#tempLow, #tempHigh{
+  width: 60px;
+}
+
+#tempLow span, #tempHigh span{
+  font-size: 20px;
+}
+
+#bar {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  background-color: #282828;
+  border-radius: 5px;
+  height: 5px;
+  position: relative;
+  margin: 5px;
+}
+
+.temp-range {
+  background-color: #db9e34;
+  height: 100%;
+  border-radius: 5px;
+}
