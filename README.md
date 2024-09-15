@@ -25,7 +25,7 @@ A modern weather forecast app that provides detailed current weather conditions,
 
 ## 🖼️ Screenshots
 
-![image](https://github.com/user-attachments/assets/83a3931b-ac5b-474a-a561-790e03d8d70f)
+![image](https://github.com/user-attachments/assets/58fb00b8-b2ea-4d05-90e2-6efdd54870c5)
 
 ---
 
