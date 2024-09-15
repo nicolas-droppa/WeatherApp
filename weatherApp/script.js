@@ -16,6 +16,7 @@ function getWeather(defaultCity) {
 
     fetchWeatherData(currentWeatherUrl, displayWeather);
     fetchWeatherData(forecastUrl, data => displayHourlyForecast(data.list.slice(0, 8)));
+    fetchWeatherData(forecastUrl, data => displayDaily(data.list.slice(0)));
 }
 
 function fetchWeatherData(url, callback) {
@@ -93,8 +94,7 @@ function displayWeather(data) {
     ${getMonthOfYear(d.getMonth())}</p><p><span><i class="fa-solid fa-location-dot"></i></span> ${city}, ${data.sys.country}</p>`;
     weatherIcon.src = iconUrl;
     weatherIcon.style.display = 'block';
-    displayHighlights(data)
-    displayDaily(data)
+    displayHighlights(data);
 }
 
 function displayHighlights(data) {
@@ -128,8 +128,123 @@ function displayHighlights(data) {
     tempMaxDiv.innerHTML = `<i class="fa-solid fa-sun"></i><div id="tempTitle"><b>Max temperature</b><p>${tempMax}<span>°C</span></p></div>`;
 }
 
+function findMinValue(collection) {
+    return Math.min(...collection)
+}
+
+function findMaxValue(collection) {
+    return Math.max(...collection);
+}
+
+function shortStr(string, letters) {
+    return string.length > letters ? string.substring(0, letters) : string;
+}
+
+function mostFrequentString(string) {
+    const occurrences = {};
+    let maxCount = 0;
+    let mostFrequent = null;
+
+    string.forEach(str => {
+        occurrences[str] = (occurrences[str] || 0) + 1;
+        if (occurrences[str] > maxCount) {
+            maxCount = occurrences[str];
+            mostFrequent = str;
+        }
+    });
+
+    return mostFrequent;
+}
+
 function displayDaily(data) {
+    let previousDate = data[0].dt_txt;
+
+    let allTimeHighTemp = -Infinity;
+    let allTimeLowTemp = Infinity;
+
+    let dateCollection = [];
+
+    let lowTempCollection = [];
+    let highTempCollection = [];
+    let avgWeatherCollection = [];
+
+    let tempCollection = [];
+    let weatherCollection = [];
     
+    data.forEach(item => {
+        let date = item.dt_txt.split(" ");
+        let temp = Math.round(item.main.temp - 273.15);
+        let weather = item.weather[0].main;
+        tempCollection.push(temp);
+        weatherCollection.push(weather);
+
+        if (temp < allTimeLowTemp) allTimeLowTemp = temp;
+        if (temp > allTimeHighTemp) allTimeHighTemp = temp;
+
+        if (date[0] !== previousDate) {
+            if (tempCollection.length > 0) {
+                lowTempCollection.push(findMinValue(tempCollection));
+                highTempCollection.push(findMaxValue(tempCollection));
+                dateCollection.push(previousDate);
+                avgWeatherCollection.push(mostFrequentString(weatherCollection));
+            }
+            tempCollection = [];
+            previousDate = date[0];
+            weatherCollection = [];
+        }
+    });
+
+    if (tempCollection.length > 0) {
+        lowTempCollection.push(findMinValue(tempCollection));
+        highTempCollection.push(findMaxValue(tempCollection));
+        dateCollection.push(previousDate);
+        avgWeatherCollection.push(mostFrequentString(weatherCollection));
+    }
+
+    // removes today if there has been 6 days recorded
+    while (lowTempCollection.length > 5) {
+        lowTempCollection.shift();
+        highTempCollection.shift();
+        dateCollection.shift();
+        avgWeatherCollection.shift();
+    }
+
+    console.log(avgWeatherCollection);
+
+    const d = new Date();
+    renderDailyTemperatures(document.getElementById('daily1'), highTempCollection[0], lowTempCollection[0], dateCollection[0], avgWeatherCollection[0], allTimeHighTemp, allTimeLowTemp, getDayOfWeek(d.getDay()));
+    renderDailyTemperatures(document.getElementById('daily2'), highTempCollection[1], lowTempCollection[1], dateCollection[1], avgWeatherCollection[1], allTimeHighTemp, allTimeLowTemp, getDayOfWeek(d.getDay()+1));
+    renderDailyTemperatures(document.getElementById('daily3'), highTempCollection[2], lowTempCollection[2], dateCollection[2], avgWeatherCollection[2], allTimeHighTemp, allTimeLowTemp, getDayOfWeek(d.getDay()+2));
+    renderDailyTemperatures(document.getElementById('daily4'), highTempCollection[3], lowTempCollection[3], dateCollection[3], avgWeatherCollection[3], allTimeHighTemp, allTimeLowTemp, getDayOfWeek(d.getDay()+3));
+    renderDailyTemperatures(document.getElementById('daily5'), highTempCollection[4], lowTempCollection[4], dateCollection[4], avgWeatherCollection[4], allTimeHighTemp, allTimeLowTemp, getDayOfWeek(d.getDay()+4));
+}
+
+function renderDailyTemperatures(div, highTemp, lowTemp, date, weather, allTimeHighTemp, allTimeLowTemp, day) {
+    date = date.split("-");
+    div.innerHTML = 
+        `<div id="dailyHeader">
+            <div id="day">${shortStr(day, 3)}</div>
+            <div id="date">${date[2]}<span> th</span></div>
+            <div id="avgWeather">mostly <span>${weather}</span></div>
+            <div id="separatorLine"></div>
+        </div>
+        <div id="tempDisplay">
+            <div id="tempLow">${lowTemp}<span>°</span></div>
+            <div id="bar"></div>
+            <div id="tempHigh">${highTemp}<span>°</span></div>
+        </div>`;
+
+    let tempBar = div.querySelector('#bar');
+
+    const rangePercent = ((highTemp - lowTemp) / (allTimeHighTemp - allTimeLowTemp)) * 100;
+    const lowOffsetPercent = ((lowTemp - allTimeLowTemp) / (allTimeHighTemp - allTimeLowTemp)) * 100;
+
+    const tempRange = document.createElement('div');
+    tempRange.className = 'temp-range';
+    tempRange.style.width = `${rangePercent}%`;
+    tempRange.style.left = `${lowOffsetPercent}%`;
+    tempRange.style.position = 'absolute';
+    tempBar.appendChild(tempRange);
 }
 
 function displayHourlyForecast(data) {
