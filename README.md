@@ -25,7 +25,7 @@ A modern weather forecast app that provides detailed current weather conditions,
 
 ## 🖼️ Screenshots
 
-![Forecastly Screenshot](https://github.com/your-username/forecastly/screenshots/screenshot.png)
+![image](https://github.com/user-attachments/assets/83a3931b-ac5b-474a-a561-790e03d8d70f)
 
 ---
 
