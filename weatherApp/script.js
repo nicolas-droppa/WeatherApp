@@ -1,5 +1,5 @@
 function getWeather(defaultCity) {
-    const apiKey = 'key';
+    const apiKey = 'api-key';
     if (defaultCity == null) {
         var city = document.getElementById('city').value;
     } else {
@@ -156,6 +156,25 @@ function mostFrequentString(string) {
     return mostFrequent;
 }
 
+function expandDate(day) {
+    const lastDigit = day % 10;
+    const lastTwoDigits = day % 100;
+
+    let suffix = "th";
+
+    if (lastTwoDigits < 11 || lastTwoDigits > 13) {
+        if (lastDigit == 1) {
+            suffix = "st";
+        } else if (lastDigit == 2) {
+            suffix = "nd";
+        } else if (lastDigit == 3) {
+            suffix = "rd";
+        }
+    }
+
+    return suffix;
+}
+
 function displayDaily(data) {
     let previousDate = data[0].dt_txt;
 
@@ -224,7 +243,7 @@ function renderDailyTemperatures(div, highTemp, lowTemp, date, weather, allTimeH
     div.innerHTML = 
         `<div id="dailyHeader">
             <div id="day">${shortStr(day, 3)}</div>
-            <div id="date">${date[2]}<span> th</span></div>
+            <div id="date">${date[2]}<span> ${expandDate(date[2])}</span></div>
             <div id="avgWeather">mostly <span>${weather}</span></div>
             <div id="separatorLine"></div>
         </div>
